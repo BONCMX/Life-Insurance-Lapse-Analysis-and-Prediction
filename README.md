@@ -5,7 +5,6 @@
 - **Best Model**: HistGradientBoosting — ROC AUC **0.84**, Recall (lapse) **0.88**.  
 - **Key Finding**: Policies without auto-debit are at **95% higher lapse risk**.  
 - **Business Action**: Target High-Risk customers with proactive outreach & auto-debit promotion.  
-- **Impact**: Improve persistency → +5% retention = up to **+25% profit uplift**.  
 
 
 ## 🌍 Why This Project Matter
