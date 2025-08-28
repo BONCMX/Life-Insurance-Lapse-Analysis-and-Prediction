@@ -1,5 +1,11 @@
 # Life Insurance Lapse Analysis and Prediction
 
+## ⚡ Executive Summary
+- **Top Drivers**: Auto-debit status, sourcing channel (Online), first payment method, customer profile (income, education, city tier), premium size.  
+- **Best Model**: HistGradientBoosting — ROC AUC **0.84**, Recall (lapse) **0.88**.  
+- **Key Finding**: Policies without auto-debit are at **95% higher lapse risk**.  
+- **Business Action**: Target High-Risk customers with proactive outreach & auto-debit promotion.  
+- **Impact**: Improve persistency → +5% retention = up to **+25% profit uplift**.  
 
 
 ## 🌍 Why This Project Matter
@@ -124,21 +130,27 @@ Payment Frequency × Product Category (row = 100%)
 ![Auto-debit × First Payment Method](./Auto-debit%20%C3%97%20First%20Payment%20Method.png)
 
 ---
+
 ### Distribution Channels & Execution Discipline
 ![Policy Type × Sub Channel](./Policy%20Type%20%C3%97%20Sub%20Channel.png)
 
 ![Sub-channel × Agency Experience × Months](./Sub-channel%20%C3%97%20Agency%20Experience%20x%20Months.png)
 
+---
 
+### Risk Profile & Coverage Scale
+![Risk Exposure × Premium](./Risk%20Exposure%20x%20Premium.png)
 
+![Sum Assured × Occupation](images/Sum%20Assured%20×%20Occupation.png)  
 
+---
 
+### Demographic Profile & Payment Discipline
+![Age Group × Risk Term](images/Age%20Group%20×%20Risk%20Term.png)  
 
+![Education](images/Contribution%20of%20Lapses%20%25%20by%20Education.png)  
 
-
-
-
-
+---
 
 ### 🔑 Top 10 Drivers of Lapse
 
@@ -167,21 +179,55 @@ Payment Frequency × Product Category (row = 100%)
 
 **Insight**: Auto-debit, sourcing channel, and payment method dominate risk factors.  
 
+---
+
+### ROC AUC between Models
+![ROC AUC](./ROC%20AUC.png)
+
+**Insight:**  
+The **HistGradientBoosting** model achieved the highest discriminative power with a **ROC AUC of 0.84**, followed closely by **Logistic Regression (0.82)** and **Random Forest (0.81)**. **Extra Trees (0.79)** trailed slightly, indicating lower stability.  
+
+Overall, all models demonstrated strong predictive capability (**>0.79 AUC**), with **HGB emerging as the most reliable classifier** for lapse risk prediction.
+
+---
+
 ### ROC Curve (Model Comparison)
-![ROC Curve](images/roc_curves.png)  
+![ROC Curve](./ROC%20curve.png)
 **Insight**: HGB clearly dominates in distinguishing lapse vs. inforce.  
 
+---
+
+
 ### Precision–Recall Curve (Best Model: HGB)
-![PR Curve](images/pr_curve.png)  
+![PR Curve](./HGB%20.png)  
 **Insight**: At threshold ~0.5, Precision=0.86, Recall=0.88. Business can tune threshold:  
 - Lower threshold → higher recall, catch more lapse risk.  
 - Higher threshold → higher precision, fewer false alarms.  
 
+---
+
+
 ### Confusion Matrix (HGB – Threshold=0.5)
-![Confusion Matrix](images/confusion_matrix.png)  
+![Confusion Matrix](./Confusion%20Matrix.png)  
 **Insight**:  
 - True Lapse caught: **13.5k** (88%).  
 - False Alarms: ~2.2k inforce contracts flagged incorrectly.  
+
+---
+## **Summary**
+
+| Analysis Axis                 | Hotspot / Segment                        | Lapse Count (est. from chart)                            | Share / Rate (%)                       | Key Insights                                                                                                                                                                                                                                                                                                                                                                  |
+| ----------------------------- | ---------------------------------------- | -------------------------------------------------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Product × Payment Freq.**   | **Annual × (Investment + Savings)**      | \~54,819 (within 64,524 Annual)                          | Annual = 84.1% of total lapse          | (1) Annual accounts for **84.1%** of total lapses ⇒ this is the largest “leakage pool.”<br>(2) Within Annual, **Investment + Savings ≈ 54.8k (\~83%)** ⇒ a 10–15% reduction here alone retains \~5.5k–8k contracts.<br>(3) Pension is small in volume (663) but lapse rate reaches **90.2%**, indicating a fragile product though not yet a priority due to low base.         |
+| **Auto-debit × FPM**          | Auto-debit = Y, Online Bill / Card       | Y = 48,257 (95.5% rate), Online-Bill 16,111 (rate 78.8%) | Inforce extremely low                  | (1) Auto-debit = **Y correlates with 95.5% lapse** ⇒ highly likely the flag represents “collection attempts after due date” rather than true enrollment.<br>(2) **Online-Bill rail shows the highest lapse rate (78.8%)**, followed by Card \~76.9% ⇒ rails are the choke point.<br>(3) Auto-debit = N is paradoxically safer (56.5% rate) than Y.                            |
+| **Occupation × Sum Assured**  | Salaried + Self-employed (Medium/Low SA) | Salaried 39,248; Self-employed / Business \~27,729       | \~87% of total occupational lapse      | (1) **Salaried segment contributes \~39k lapses**, combined with Self-employed/Business \~27k ⇒ \~87% of total lapses by occupation.<br>(2) These are precisely the segments expected to pay regularly, yet are at risk ⇒ structured payroll-linked / cashflow-aligned collection is critical.<br>(3) Other categories are minor but prove lapse is not occupation-exclusive. |
+| **Risk Exposure × Premium**   | Ultra exposure (all premium bands)       | \~74,163                                                 | Ultra dominates majority               | (1) **Ultra Risk Exposure explains nearly all lapses**, making it the #1 driver.<br>(2) Even Medium and Low premiums under Ultra exposure show high lapse ⇒ risk is not confined to large-ticket cases.<br>(3) Low/Medium exposure almost negligible ⇒ rescue capacity must be focused exclusively on Ultra.                                                                  |
+| **Zone × City Tier**          | Unknown zone + Tier III                  | Unknown = 47,632 (36.6%, \~92.8% rate)                   | East (Tier III = 65.1%), North2 (60%)  | (1) **Unknown Zone = 36.6% of total lapses, \~92.8% rate** ⇒ data quality failure severely distorts geographic insight.<br>(2) Where data is available, **Tier III dominates consistently** (East 65.1%, North2 60%) ⇒ small-town / rural lapse hotspots.<br>(3) West is an exception with **Tier I at 41.4%** ⇒ points to channel-specific dynamics.                         |
+| **Education**                 | Bachelor + Highschool                    | Bachelor 30,364; Highschool 15,667                       | Top 2 = >60% of total lapses           | (1) **Bachelor degree alone accounts for \~30k (\~40%) lapses**, the largest single group.<br>(2) Combined with Highschool (\~15.6k), the two groups represent >60% of lapses ⇒ primary target cohorts for retention communication.<br>(3) Smaller categories (Doctorate / Professional) still lapse, proving even “high-education” customers are not immune.                 |
+| **Policy Type × Sub-channel** | UL via HDFC BANK                         | UL total \~37,540; HDFC BANK share = 68.4% of UL         | One channel accounts for outsized risk | (1) UL contributes \~37.5k lapses, of which **68.4% are sourced through HDFC Bank** ⇒ one single channel concentrates systemic risk.<br>(2) Par & Non-Par lapses spread more evenly across EDM/Agency ⇒ channel-specific retention playbooks required.<br>(3) Accountability at HDFC Bank alone could reduce >1k lapses with small rate improvement.                          |
+| **Age × Risk Term**           | Middle + Young, ≤20 years risk term      | Middle: 52.8% lapse share; Young: 45.1%                  | Short-term contracts dominate lapses   | (1) **Middle-aged group explains \~53% lapses**, followed by Young at \~45%.<br>(2) Lapses cluster in **short-term contracts ≤20 years** ⇒ reflects payment discipline rather than affordability of long-term cover.<br>(3) Teenagers show high lapse % but negligible absolute count ⇒ not a priority for intervention.                                                      |
+| **First Payment Method**      | Online-Bill & Card                       | Online-Bill 16,111; Card \~13k                           | \~77–79% lapse rate                    | (1) **Online-Bill has the highest rate (78.8%)** among all methods.<br>(2) Card (76.9%) and Cheque (76.8%) also show instability ⇒ “high-fail” rails.<br>(3) Transfer and Others record lower rates (\~73–74%) ⇒ migrating customers to these methods can reduce risk materially.                                                                                             |
+| **Sub-channel × Agency Exp.** | EDM / OL-HDFC Bank                       | EDM share \~49.1%; OL-HDFC Bank \~86.8%                  | High lapse in senior-heavy channels    | (1) EDM and OL-HDFC show **exceptionally high lapse concentration (49% / 86.8%)**, a paradox as seasoned channels perform worse.<br>(2) Agency & HDFC Sales exhibit high lapse among early-tenure reps ⇒ need structured coaching + first-year playbooks.<br>(3) Suggests urgent **audit of pitch quality and collection process** in senior-heavy sub-channels.              |
 
 ---
 
@@ -223,10 +269,5 @@ This project demonstrates that **data-driven lapse prediction is actionable**:
 
 👉 **Outcome**: boost persistency, reduce acquisition costs, and strengthen long-term customer trust.  
 
-## ⚡ Executive Summary
-- **Top Drivers**: Auto-debit status, sourcing channel (Online), first payment method, customer profile (income, education, city tier), premium size.  
-- **Best Model**: HistGradientBoosting — ROC AUC **0.84**, Recall (lapse) **0.88**.  
-- **Key Finding**: Policies without auto-debit are at **95% higher lapse risk**.  
-- **Business Action**: Target High-Risk customers with proactive outreach & auto-debit promotion.  
-- **Impact**: Improve persistency → +5% retention = up to **+25% profit uplift**.  
+
 
