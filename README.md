@@ -144,14 +144,6 @@ Below is a sample snapshot of the first few records after variable renaming:
 
 **Insight**: Auto-debit, sourcing channel, and payment method dominate risk factors.  
 
-### 🏆 Model Performance
-| Model                | ROC AUC | Accuracy | BalancedAcc | F1  | Precision | Recall |
-|----------------------|---------|----------|-------------|-----|-----------|--------|
-| HistGradientBoosting | **0.84** | 0.80     | 0.70        | 0.87 | 0.86      | **0.88** |
-| Logistic L1          | 0.82    | 0.74     | 0.78        | 0.81 | **0.94**  | 0.70   |
-| Random Forest        | 0.81    | 0.76     | 0.76        | 0.83 | 0.91      | 0.76   |
-| Extra Trees          | 0.79    | 0.78     | 0.70        | 0.86 | 0.86      | 0.86   |
-
 ### ROC Curve (Model Comparison)
 ![ROC Curve](images/roc_curves.png)  
 **Insight**: HGB clearly dominates in distinguishing lapse vs. inforce.  
