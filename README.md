@@ -121,16 +121,16 @@ Below is a sample snapshot of the first few records after variable renaming:
 
 | Rank | Feature                          | Avg. Norm. Importance | # Models Agree | Signed Coef | Direction  |
 |------|----------------------------------|-----------------------|----------------|-------------|------------|
-| 1    | auto_debit_N                     | 0.95                  | 5              | -0.70       | ↓ rủi ro   |
-| 2    | auto_debit_Y                     | 0.78                  | 4              | 0.70        | ↑ rủi ro   |
-| 3    | sourcing_channel_e_Online        | 0.25                  | 5              | 0.76        | ↑ rủi ro   |
-| 4    | first_payment_method_e_encoded   | 0.24                  | 5              | 0.06        | ↑ rủi ro   |
-| 5    | la_education_e_encoded           | 0.22                  | 5              | 0.10        | ↑ rủi ro   |
-| 6    | ag_exp_moths_e_encoded           | 0.22                  | 5              | 0.12        | ↑ rủi ro   |
-| 7    | premium_e_encoded                | 0.18                  | 5              | 0.03        | ↑ rủi ro   |
-| 8    | city_tier_encoded                | 0.17                  | 5              | 0.11        | ↑ rủi ro   |
-| 9    | la_income_e_encoded              | 0.17                  | 5              | 0.13        | ↑ rủi ro   |
-| 10   | la_age_e_encoded                 | 0.14                  | 5              | 0.03        | ↑ rủi ro   |
+| 1    | auto_debit_N                     | 0.95                  | 5              | -0.70       | ↓ Risk     |
+| 2    | auto_debit_Y                     | 0.78                  | 4              | 0.70        | ↑ Risk     |
+| 3    | sourcing_channel_e_Online        | 0.25                  | 5              | 0.76        | ↑ Risk     |
+| 4    | first_payment_method_e_encoded   | 0.24                  | 5              | 0.06        | ↑ Risk     |
+| 5    | la_education_e_encoded           | 0.22                  | 5              | 0.10        | ↑ Risk     |
+| 6    | ag_exp_moths_e_encoded           | 0.22                  | 5              | 0.12        | ↑ Risk     |
+| 7    | premium_e_encoded                | 0.18                  | 5              | 0.03        | ↑ Risk     |
+| 8    | city_tier_encoded                | 0.17                  | 5              | 0.11        | ↑ Risk     |
+| 9    | la_income_e_encoded              | 0.17                  | 5              | 0.13        | ↑ Risk     |
+| 10   | la_age_e_encoded                 | 0.14                  | 5              | 0.03        | ↑ Risk     |
 
 
 ### 📊 Model Metrics
