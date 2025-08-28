@@ -121,6 +121,16 @@ Below is a sample snapshot of the first few records after variable renaming:
 4. **Evaluation Metrics**: ROC AUC, Accuracy, Balanced Accuracy, Precision, Recall, F1.  
 
 ---
+### **Heatmap Correlation**
+The heatmap below shows the correlation matrix of the top 10 variables most related to policy lapse.  
+Key observations:  
+- **Strong positive correlations** exist between `sensitivity`, `risk_term`, and `sum_assured`, which may indicate overlapping information.  
+- `lapse_inforce` exhibits only **weak direct correlations** with single variables, implying that lapse is likely driven by multiple factors combined.  
+- This analysis highlights the importance of considering feature interactions and potential multicollinearity when building predictive models.
+
+![Heatmap of Top 10 Variables Correlated with Lapse](98f12bb4-07ef-47cf-812e-8af55d4b2726.png)
+
+---
 
 ## 4.Results📊
 ### Premium Collection & Payment Rails
@@ -249,7 +259,7 @@ Overall, all models demonstrated strong predictive capability (**>0.79 AUC**), w
 
 ---  
 
-## 🚀 Business Implications
+## 5.Business Implications🚀 
 
 - **Auto Debit (Critical Weakness)**  
   - Policies flagged with Auto-debit=Y exhibit **95.5% lapse rate**, paradoxically *higher* than N=56.5%.  
@@ -286,7 +296,7 @@ Overall, all models demonstrated strong predictive capability (**>0.79 AUC**), w
 
 ---
 
-## ⚠️ Limitations & Next Steps
+## 6.Limitations & Next Steps⚠️ 
 
 - **Limitations**  
   - Data from one insurer; risk patterns may not generalize across **markets or regulatory environments**.  
