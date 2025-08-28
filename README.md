@@ -15,14 +15,14 @@ This project addresses both questions by combining **advanced analytics techniqu
 
 ---
 
-## 🎯 Objectives
+## 1.Objectives🎯 
 1. **Uncover Drivers of Lapse** → Understand key behavioral, demographic, and product factors.  
 2. **Build Predictive Models** → Score customers by lapse probability.  
 3. **Enable Business Action** → Segment into High/Medium/Low risk for targeted retention.  
 
 ---
 
-## 📂 Data
+## 2.Data📂
 - **Source**: Source : Kaggle – Insurance Premium Data
 https://www.kaggle.com/datasets/prachi13/insurance13m-persistency?resource=download&select=Train.csv  
 - **Target**: `lapse_inforce` (1 = Lapse, 0 = Inforce).  
@@ -34,7 +34,7 @@ https://www.kaggle.com/datasets/prachi13/insurance13m-persistency?resource=downl
   - Agent experience  
 
 ---
-## Dataset Discription
+### Dataset Discription
 
 The dataset contains **100,000 policy records** from an anonymized life insurance portfolio.  
 It includes information on **policies, customers (life assured), agents, distribution channels, and policy status**.  
@@ -93,10 +93,9 @@ These features form the foundation for analyzing **drivers of policy lapse** and
 
 ---
 ### Sample Data Preview
-## 📊 Sample Data Preview
 
 The dataset contains **100,000 rows and 38 columns**.  
-Below is a sample snapshot of the first few records after variable renaming and cleaning:
+Below is a sample snapshot of the first few records after variable renaming:
 
 | id       | persistency_13m | ag_branch             | alcohol | premium    | ag_exp_months | auto_debit | bmi   | risk_exposure | sourcing_channel     | la_city     | contract_branch       | city_tier | la_age | la_education                       | la_gender | la_income   | la_industry        | marital | nationality | occupation | policy_type | distribution_partner | first_payment_method                 | product_category | payment_frequency | product_name                    | login_date | sensitivity | residential_status | risk_term | rider | smoker | la_state      | sub_channel | sum_assured  | operation_zone | lapse_inforce |
 |----------|-----------------|-----------------------|---------|------------|----------------|------------|-------|---------------|----------------------|-------------|-----------------------|-----------|--------|------------------------------------|-----------|-------------|-------------------|---------|-------------|------------|-------------|----------------------|--------------------------------------|-----------------|------------------|---------------------------------|------------|-------------|-------------------|-----------|-------|--------|--------------|-------------|--------------|----------------|---------------|
@@ -106,16 +105,9 @@ Below is a sample snapshot of the first few records after variable renaming and 
 | 21025282 | NaN             | Mumbai - Borivali     | NaN     | 33,493.00  | 3.00           | Y          | NaN   | 350,000.00    | Other Banks & CA     | Thane       | Mumbai - Borivali     | Tier I    | 28.00  | Diploma in Electrical Engineering  | Male      | 450,000.00  | Consultant        | Single  | Indian      | Salaried   | Par         | RBL Bank Ltd         | Online Credit/Debit Card/Teles Sales | Savings         | Annual           | HDFC Life Uday                 | 2018-12-31 | 0           | Resident Indian   | 12.00     | 0     | NaN    | Maharashtra   | Ratnakar Bank | 212,857.00   | West           | 1             |
 | 19982717 | 0.8307          | Mumbai - Corporate    | NaN     | 12,335.00  | 32.00          | N          | NaN   | 58,326.00     | HDFC BANK            | Pandharpur  | Mumbai - HUB          | Tier III  | 37.00  | B.A.                                | Male      | 250,000.00  | Sales & Marketing | Married | Indian      | Salaried   | Par         | HDFC BANK            | Online Credit/Debit Card/Teles Sales | Savings         | Annual           | HDFC Life ClassicAssure Plus    | 2018-01-17 | 0           | Resident Indian   | 10.00     | 1     | NaN    | Maharashtra   | HDFC BANK   | 116,653.00   | NaN            | 1             |
 
----
-
-📌 **Notes**:  
-- Sensitive IDs and product names are masked/anonymized.  
-- Numeric values (e.g., `premium`, `sum_assured`, `income`) are in INR.  
-- Missing values (`NaN`) reflect unavailable declarations (e.g., smoker, BMI).  
-- Target column: `lapse_inforce` (1 = Lapsed, 0 = Inforce).
 
 ---
-## 🛠 Methodology
+## 3.Methodology🛠
 1. **EDA**: lapse rate distribution, CI analysis, bivariate comparisons.  
 2. **Feature Importance**: Logistic L1 (signed coef), Tree Ensembles (RF, ET, HGB), Permutation Importance.  
 3. **Predictive Modeling**: HGB, RF, ET, Logistic L1.  
@@ -123,10 +115,33 @@ Below is a sample snapshot of the first few records after variable renaming and 
 
 ---
 
-## 📊 Results
+## 4.Results📊
 
 ### 🔑 Top 10 Drivers of Lapse
-![Feature Importance](images/feature_importance.png)  
+
+| Rank | Feature                          | Avg. Norm. Importance | # Models Agree | Signed Coef | Direction  |
+|------|----------------------------------|-----------------------|----------------|-------------|------------|
+| 1    | auto_debit_N                     | 0.95                  | 5              | -0.70       | ↓ rủi ro   |
+| 2    | auto_debit_Y                     | 0.78                  | 4              | 0.70        | ↑ rủi ro   |
+| 3    | sourcing_channel_e_Online        | 0.25                  | 5              | 0.76        | ↑ rủi ro   |
+| 4    | first_payment_method_e_encoded   | 0.24                  | 5              | 0.06        | ↑ rủi ro   |
+| 5    | la_education_e_encoded           | 0.22                  | 5              | 0.10        | ↑ rủi ro   |
+| 6    | ag_exp_moths_e_encoded           | 0.22                  | 5              | 0.12        | ↑ rủi ro   |
+| 7    | premium_e_encoded                | 0.18                  | 5              | 0.03        | ↑ rủi ro   |
+| 8    | city_tier_encoded                | 0.17                  | 5              | 0.11        | ↑ rủi ro   |
+| 9    | la_income_e_encoded              | 0.17                  | 5              | 0.13        | ↑ rủi ro   |
+| 10   | la_age_e_encoded                 | 0.14                  | 5              | 0.03        | ↑ rủi ro   |
+
+
+### 📊 Model Metrics
+
+| Model               | ROC AUC | Accuracy | Balanced Accuracy | F1   | Precision | Recall |
+|---------------------|---------|----------|-------------------|------|-----------|--------|
+| HistGradientBoosting | **0.85** | 0.80     | 0.70              | 0.87 | 0.85      | **0.90** |
+| Logistic_L1          | 0.84    | 0.75     | 0.78              | 0.81 | **0.94**  | 0.72   |
+| RandomForest         | 0.84    | 0.80     | 0.68              | 0.87 | 0.84      | 0.90   |
+| ExtraTrees           | 0.81    | 0.79     | 0.67              | 0.87 | 0.84      | 0.89   |
+
 **Insight**: Auto-debit, sourcing channel, and payment method dominate risk factors.  
 
 ### 🏆 Model Performance
