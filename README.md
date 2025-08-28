@@ -1,6 +1,5 @@
 # Life Insurance Lapse Analysis and Prediction
 
-
 ## 🌍 Why This Project Matter
 
 In life insurance, **persistency is one of the most critical health indicators** of a portfolio.  
