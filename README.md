@@ -1,5 +1,7 @@
 # Life Insurance Lapse Analysis and Prediction
 
+
+
 ## 🌍 Why This Project Matter
 
 In life insurance, **persistency is one of the most critical health indicators** of a portfolio.  
@@ -115,6 +117,28 @@ Below is a sample snapshot of the first few records after variable renaming:
 ---
 
 ## 4.Results📊
+### Premium Collection & Payment Rails
+Payment Frequency × Product Category (row = 100%)
+![Payment Frequency × Product Category](./Payment%20Frequency%20%C3%97%20Product%20Category.png)
+
+![Auto-debit × First Payment Method](./Auto-debit%20%C3%97%20First%20Payment%20Method.png)
+
+---
+### Distribution Channels & Execution Discipline
+![Policy Type × Sub Channel](./Policy%20Type%20%C3%97%20Sub%20Channel.png)
+
+![Sub-channel × Agency Experience × Months](./Sub-channel%20%C3%97%20Agency%20Experience%20x%20Months.png)
+
+
+
+
+
+
+
+
+
+
+
 
 ### 🔑 Top 10 Drivers of Lapse
 
