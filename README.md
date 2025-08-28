@@ -23,8 +23,8 @@ This project addresses both questions by combining **advanced analytics techniqu
 ---
 
 ## 2.Data📂
-- **Source**: Source : Kaggle – Insurance Premium Data
-https://www.kaggle.com/datasets/prachi13/insurance13m-persistency?resource=download&select=Train.csv  
+- **Source:** [*<u>Kaggle – Insurance Premium Data</u>*](https://www.kaggle.com/datasets/prachi13/insurance13m-persistency?resource=download&select=Train.csv)
+
 - **Target**: `lapse_inforce` (1 = Lapse, 0 = Inforce).  
 - **Key Variables**:
   - Payment behavior (auto-debit, payment_method, payment_frequency,  ...)  
