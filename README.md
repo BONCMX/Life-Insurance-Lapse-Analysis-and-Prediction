@@ -1,4 +1,4 @@
-# Life Insurance Lapse Analysis and Prediction
+
 ![Life Insurance Lapse Analysis and Prediction](./cover.png)
 ## ⚡ Executive Summary
 - **Top Drivers**: Auto-debit status, sourcing channel (Online), first payment method, customer profile (income, education, city tier), premium size.  
