@@ -128,7 +128,7 @@ Key observations:
 - `lapse_inforce` exhibits only **weak direct correlations** with single variables, implying that lapse is likely driven by multiple factors combined.  
 - This analysis highlights the importance of considering feature interactions and potential multicollinearity when building predictive models.
 
-![Heatmap of Top 10 Variables Correlated with Lapse](98f12bb4-07ef-47cf-812e-8af55d4b2726.png)
+<img src="./assets/figures/heatmap_top10_lapse.png?raw=1" alt="Heatmap of Top 10 Variables Correlated with Lapse" width="800" />
 
 ---
 
